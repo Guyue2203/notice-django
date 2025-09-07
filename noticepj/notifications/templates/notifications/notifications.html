@@ -1,13 +1,25 @@
-{% for n in notifications %}
-  <li>
-    {% if n.receiver %}
-      <strong>私人通知</strong> 来自 {{ n.sender.username }}: {{ n.message }}
-      {% if not n.is_read %}
-        <a href="{% url 'mark_read' n.id %}">标记为已读</a>
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+<ul class="list-group my-4">
+  {% for n in notifications %}
+    <li class="list-group-item d-flex justify-content-between align-items-start">
+      <div class="ms-2 me-auto">
+        {% if n.receiver %}
+          <span class="badge bg-primary me-2">私人通知</span>
+          <strong>{{ n.sender.username }}</strong>：{{ n.message }}
+        {% else %}
+          <span class="badge bg-success me-2">公告</span>
+          {{ n.message }}
+        {% endif %}
+        <div class="text-muted small mt-1">{{ n.created_at }}</div>
+      </div>
+      {% if n.receiver and not n.is_read %}
+        <a href="{% url 'mark_read' n.id %}" class="btn btn-sm btn-outline-secondary">标记为已读</a>
       {% endif %}
-    {% else %}
-      <strong>公告</strong>: {{ n.message }}
-    {% endif %}
-    <small>{{ n.created_at }}</small>
-  </li>
-{% endfor %}
+    </li>
+  {% empty %}
+    <li class="list-group-item text-center text-muted">暂无通知</li>
+  {% endfor %}
+</ul>
