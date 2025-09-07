@@ -1,14 +1,26 @@
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/bootstrap-icons.css' %}">
 <link rel="stylesheet" href="{% static 'css/notifications.css' %}">
 
-<div class="notifications-container">
-  <h1 class="notifications-title">通知广场</h1>
+<div class="page-wrapper">
+  <div class="page-header">
+    <h1 class="page-title">通知</h1>
+    <div class="user-status">
+      {% if request.user.is_authenticated %}
+        <span class="user-info">
+          <span class="username">{{ request.user.username }}</span>
+        </span>
+        <button type="button" class="logout-btn" onclick="logoutUser()">退出</button>
+      {% else %}
+        <a href="{% url 'login' %}?next=/notifications/" class="login-btn">登录</a>
+      {% endif %}
+    </div>
+  </div>
 
+  <div class="notifications-container">
   {% if not request.user.is_authenticated %}
   <div class="auth-alert">
-    <i class="bi bi-lock"></i>
-    <p><a class="link-primary" href="{% url 'login' %}?next=/notifications/">登录查看私人通知</a></p>
+    <span class="icon">🔒</span>
+    <p>登录后可查看私人通知</p>
   </div>
   {% endif %}
 
@@ -21,19 +33,19 @@
             <span class="badge badge-private">私信</span>
             {% if notif.sender %}
               <span class="notification-sender">{{ notif.sender.username }}</span>
-              <span class="bi bi-arrow-right-short" aria-hidden="true"></span>
+              <span class="arrow">→</span>
               <span class="notification-sender">{{ notif.receiver.username }}</span>
               <span class="notification-message">：{{ notif.message }}</span>
             {% else %}
               <span class="notification-sender">未知</span>
-              <span class="bi bi-arrow-right-short" aria-hidden="true"></span>
+              <span class="arrow">→</span>
               <span class="notification-sender">{{ notif.receiver.username }}</span>
               <span class="notification-message">：{{ notif.message }}</span>
             {% endif %}
           </div>
           {% if not notif.is_read and request.user == notif.receiver %}
           <a class="mark-read-btn" href="{% url 'mark_read' notif.id %}">
-            <i class="bi bi-check2-circle"></i> 标记已读
+            <span class="icon">✓</span> 标记已读
           </a>
           {% endif %}
         {% else %}
@@ -49,11 +61,15 @@
           </div>
         {% endif %}
 
-        {% if notif.is_read %}
         <div class="notification-time">
-          <span class="bi bi-check2"></span> 已读
+          <span class="icon">🕐</span>
+          <span>{{ notif.created_at|date:"Y年m月d日 H:i" }}</span>
+          {% if notif.receiver and notif.is_read %}
+            <span class="read-status">
+              <span class="icon">✓</span> 已读
+            </span>
+          {% endif %}
         </div>
-        {% endif %}
       </div>
     </li>
   {% empty %}
@@ -63,3 +79,36 @@
 </div>
 
 <script src="{% static 'js/notifications.js' %}"></script>
+
+<script>
+function logoutUser() {
+    // 显示确认对话框
+    if (confirm('确定要退出登录吗？')) {
+        // 创建表单数据
+        const formData = new FormData();
+        formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+        
+        // 发送AJAX请求
+        fetch('{% url "ajax_logout" %}', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // 退出成功，刷新页面
+                window.location.reload();
+            } else {
+                alert('退出失败，请重试');
+            }
+        })
+        .catch(error => {
+            console.error('退出请求失败:', error);
+            alert('退出失败，请重试');
+        });
+    }
+}
+</script>

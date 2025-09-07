@@ -1,106 +1,369 @@
 /* 通知页面自定义样式 */
 
-/* 通知列表容器 */
-.notifications-container {
-  max-width: 800px;
-  margin: 2rem auto;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-  border-radius: 0.5rem;
-  overflow: hidden;
-}
-
-/* 页面标题 */
-.notifications-title {
-  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-  color: white;
-  padding: 1.5rem;
-  margin: 0;
-  font-weight: 600;
-  text-align: center;
-  border-radius: 0.5rem 0.5rem 0 0;
-}
-
-/* 登录容器与卡片 */
-.login-container {
+/* 首页样式 */
+.home-container {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: linear-gradient(135deg, rgba(106,17,203,0.05), rgba(37,117,252,0.05));
+  padding: 2rem 1rem;
+}
+
+.home-card {
+  background: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 1rem 2rem rgba(0,0,0,0.1);
+  padding: 3rem 2rem;
+  text-align: center;
+  max-width: 500px;
+  width: 100%;
+}
+
+.home-title {
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: #333;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: -0.02em;
+}
+
+.home-subtitle {
+  color: #666;
+  font-size: 1.1rem;
+  margin: 0 0 2.5rem 0;
+  font-weight: 400;
+}
+
+.home-actions {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.action-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.5rem 2rem;
+  border-radius: 0.75rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  min-width: 150px;
+  border: 2px solid transparent;
+}
+
+.notifications-btn {
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  color: white;
+}
+
+.notifications-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 1rem 2rem rgba(106,17,203,0.3);
+  color: white;
+  text-decoration: none;
+}
+
+.admin-btn {
+  background: #f8f9fa;
+  color: #333;
+  border-color: #e0e0e0;
+}
+
+.admin-btn:hover {
+  background: #e9ecef;
+  transform: translateY(-2px);
+  box-shadow: 0 1rem 2rem rgba(0,0,0,0.1);
+  color: #333;
+  text-decoration: none;
+}
+
+.action-btn i,
+.action-btn .icon-bell,
+.action-btn .icon-gear {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.icon-bell,
+.icon-gear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.action-btn span {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.action-btn small {
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+.home-info {
+  color: #999;
+  font-size: 0.9rem;
+}
+
+/* 响应式设计 */
+@media (max-width: 576px) {
+  .home-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .action-btn {
+    width: 100%;
+    max-width: 250px;
+  }
+  
+  .home-title {
+    font-size: 2rem;
+  }
+}
+
+/* 页面包装器 */
+.page-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  background: #ffffff;
+  min-height: 100vh;
+}
+
+/* 页面头部 */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+/* 页面标题 */
+.page-title {
+  margin: 0;
+  font-weight: 300;
+  font-size: 2rem;
+  color: #333;
+  letter-spacing: -0.02em;
+}
+
+/* 用户状态栏 */
+.user-status {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.username {
+  font-size: 0.9rem;
+  color: #666;
+  font-weight: 400;
+}
+
+.login-btn,
+.logout-btn {
+  padding: 0.5rem 1rem;
+  background: transparent;
+  color: #666;
+  text-decoration: none;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.logout-btn {
+  border: 1px solid #e0e0e0;
+}
+
+.login-btn:hover,
+.logout-btn:hover {
+  background: #f8f8f8;
+  color: #333;
+  text-decoration: none;
+  border-color: #d0d0d0;
+}
+
+/* 通知列表容器 */
+.notifications-container {
+  background: #ffffff;
+}
+
+/* 登录容器与卡片 */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
   background: linear-gradient(135deg, rgba(106,17,203,0.08), rgba(37,117,252,0.08));
   padding: 2rem 1rem;
 }
 
-.login-card {
-  width: 100%;
-  max-width: 420px;
-  background: #fff;
-  border-radius: 0.75rem;
-  box-shadow: 0 1rem 2rem rgba(0,0,0,0.12);
-  overflow: hidden;
+.login {
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  display: block;
+  font-weight: bold;
+  font-size: x-large;
 }
 
-.login-header {
+.card {
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 1.25rem 1.5rem;
-  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-  color: #fff;
-}
-
-.login-header h2 {
-  margin: 0;
-  font-size: 1.25rem;
-}
-
-.login-form {
-  padding: 1.25rem 1.5rem 1.5rem;
-}
-
-.login-form p {
-  margin: 0 0 1rem 0;
-}
-
-.login-form input[type="text"],
-.login-form input[type="email"],
-.login-form input[type="password"] {
-  width: 100%;
-  padding: 0.625rem 0.75rem;
-  border: 1px solid #dee2e6;
-  border-radius: 0.5rem;
-  outline: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.login-form input:focus {
-  border-color: #6a11cb;
-  box-shadow: 0 0 0 0.2rem rgba(106,17,203,0.15);
-}
-
-.login-btn {
-  width: 100%;
-  display: inline-flex;
-  align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  margin-top: 0.5rem;
-  padding: 0.625rem 0.75rem;
-  font-size: 1rem;
-  font-weight: 600;
-  color: #fff;
-  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  align-items: center;
+  min-height: 350px;
+  width: 300px;
+  flex-direction: column;
+  gap: 35px;
+  background: #e3e3e3;
+  box-shadow: 16px 16px 32px #c8c8c8,
+        -16px -16px 32px #fefefe;
+  border-radius: 8px;
+}
+
+.card form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 35px;
+  width: 100%;
+}
+
+.inputBox {
+  position: relative;
+  width: 250px;
+}
+
+.inputBox input {
+  width: 100%;
+  padding: 10px;
+  outline: none;
   border: none;
-  border-radius: 0.5rem;
+  color: #000;
+  font-size: 1em;
+  background: transparent;
+  border-left: 2px solid #000;
+  border-bottom: 2px solid #000;
+  transition: 0.1s;
+  border-bottom-left-radius: 8px;
+}
+
+.inputBox span {
+  margin-top: 5px;
+  position: absolute;
+  left: 0;
+  transform: translateY(-4px);
+  margin-left: 10px;
+  padding: 10px;
+  pointer-events: none;
+  font-size: 12px;
+  color: #000;
+  text-transform: uppercase;
+  transition: 0.5s;
+  letter-spacing: 3px;
+  border-radius: 8px;
+  z-index: 1;
+}
+
+.inputBox input:valid~span,
+.inputBox input:focus~span {
+  transform: translateX(113px) translateY(-15px);
+  font-size: 0.8em;
+  padding: 5px 10px;
+  background: #000;
+  letter-spacing: 0.2em;
+  color: #fff;
+  border: 2px;
+}
+
+.inputBox input:valid,
+.inputBox input:focus {
+  border: 2px solid #000;
+  border-radius: 8px;
+}
+
+/* 修复浏览器自动填充样式 */
+.inputBox input:-webkit-autofill,
+.inputBox input:-webkit-autofill:hover,
+.inputBox input:-webkit-autofill:focus,
+.inputBox input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px transparent inset !important;
+  -webkit-text-fill-color: #000 !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* 当输入框有内容时（包括自动填充），标签应该上移 */
+.inputBox input:-webkit-autofill~span {
+  transform: translateX(113px) translateY(-15px) !important;
+  font-size: 0.8em !important;
+  padding: 5px 10px !important;
+  background: #000 !important;
+  letter-spacing: 0.2em !important;
+  color: #fff !important;
+  border: 2px !important;
+}
+
+/* JavaScript添加的has-value类的样式 */
+.inputBox input.has-value~span {
+  transform: translateX(113px) translateY(-15px) !important;
+  font-size: 0.8em !important;
+  padding: 5px 10px !important;
+  background: #000 !important;
+  letter-spacing: 0.2em !important;
+  color: #fff !important;
+  border: 2px !important;
+}
+
+/* 确保空输入框时标签正常显示 */
+.inputBox input:not(.has-value):not(:focus):not(:valid)~span {
+  transform: translateY(-4px) !important;
+  font-size: 12px !important;
+  padding: 10px !important;
+  background: transparent !important;
+  letter-spacing: 3px !important;
+  color: #000 !important;
+  border: none !important;
+}
+
+.enter {
+  height: 45px;
+  width: 100px;
+  border-radius: 5px;
+  border: 2px solid #000;
   cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+  background-color: transparent;
+  transition: 0.5s;
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 2px;
+  margin-bottom: 1em;
 }
 
-.login-btn:hover {
-  box-shadow: 0 0.75rem 1.5rem rgba(37,117,252,0.25);
-}
-
-.login-btn:active {
-  transform: translateY(1px);
+.enter:hover {
+  background-color: rgb(0, 0, 0);
+  color: white;
 }
 
 /* 提示块 */
@@ -116,6 +379,10 @@
   border-radius: 0.5rem;
 }
 
+.auth-alert .icon {
+  font-size: 1rem;
+}
+
 /* 通知列表 */
 .notification-list {
   list-style: none;
@@ -125,22 +392,51 @@
 
 /* 通知项 */
 .notification-item {
-  border-left: 0 !important;
-  border-right: 0 !important;
-  border-radius: 0 !important;
-  transition: all 0.2s ease;
-  padding: 1rem 1.5rem;
+  border: none;
+  border-bottom: 1px solid #f5f5f5;
+  transition: all 0.3s ease;
+  padding: 1.5rem 0;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  cursor: pointer;
+  position: relative;
+}
+
+.notification-item:last-child {
+  border-bottom: none;
 }
 
 .notification-item:hover {
-  background-color: rgba(0, 123, 255, 0.05);
+  background-color: transparent;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 1.5rem 1rem;
+  margin: 0 -1rem;
+  transition: all 0.3s ease;
+}
+
+/* 私信悬浮效果 */
+.notification-item:hover .badge-private {
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+}
+
+/* 公告悬浮效果 */
+.notification-item:hover .badge-public {
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(34, 197, 94, 0.3);
+}
+
+/* 悬浮时通知内容轻微放大 */
+.notification-item:hover .notification-content {
+  transform: scale(1.02);
 }
 
 /* 通知内容 */
 .notification-content {
   flex-grow: 1;
+  transition: all 0.3s ease;
 }
 
 /* 辅助行 */
@@ -151,70 +447,132 @@
   flex-wrap: wrap;
 }
 
+.arrow {
+  color: #999;
+  font-weight: bold;
+}
+
 /* 徽章 */
 .badge-private {
-  background-color: #6a11cb !important;
-  color: #fff;
-  padding: 0.15rem 0.5rem;
-  border-radius: 0.5rem;
+  background-color: #f0f0f0;
+  color: #666;
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
   font-size: 0.75rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
 }
 
 .badge-public {
-  background-color: #20c997 !important;
-  color: #fff;
-  padding: 0.15rem 0.5rem;
-  border-radius: 0.5rem;
+  background-color: #e8f5e8;
+  color: #4a7c59;
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
   font-size: 0.75rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
 }
 
 /* 文本 */
 .notification-sender {
-  font-weight: 600;
-  color: #495057;
+  font-weight: 500;
+  color: #333;
 }
 
 .notification-message {
-  color: #212529;
+  color: #666;
+  line-height: 1.5;
 }
 
 /* 时间/状态 */
 .notification-time {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   font-size: 0.8rem;
-  color: #6c757d;
-  margin-top: 0.5rem;
+  color: #999;
+  margin-top: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.notification-time .icon {
+  font-size: 0.8rem;
+}
+
+.read-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: #4a7c59;
+  font-weight: 400;
+  font-size: 0.75rem;
+}
+
+.read-status .icon {
+  font-size: 0.75rem;
 }
 
 /* 标记已读按钮 */
 .mark-read-btn {
-  padding: 0.25rem 0.75rem;
-  font-size: 0.875rem;
-  border-radius: 50px;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.8rem;
+  border-radius: 4px;
   transition: all 0.2s ease;
   background-color: transparent;
-  border: 1px solid #6a11cb;
-  color: #6a11cb;
+  border: 1px solid #e0e0e0;
+  color: #666;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
 }
 
 .mark-read-btn:hover {
-  background-color: #6a11cb;
-  color: white;
+  background-color: #f8f8f8;
+  color: #333;
+  border-color: #d0d0d0;
+}
+
+.mark-read-btn .icon {
+  font-size: 0.8rem;
 }
 
 /* 空通知状态 */
 .empty-notification {
-  padding: 2rem;
+  padding: 3rem 2rem;
   text-align: center;
-  color: #6c757d;
-  font-style: italic;
-  background-color: #f8f9fa;
+  color: #999;
+  font-size: 0.9rem;
+  background-color: transparent;
 }
 
 /* 响应式调整 */
+@media (max-width: 768px) {
+  .page-wrapper {
+    padding: 1rem;
+  }
+  
+  .page-header {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+  
+  .user-status {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .page-title {
+    font-size: 1.5rem;
+  }
+}
+
 @media (max-width: 576px) {
   .notification-item {
     flex-direction: column;
@@ -224,5 +582,110 @@
   .mark-read-btn {
     margin-top: 1rem;
     align-self: flex-end;
+  }
+  
+  .notification-time {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+}
+
+/* 新登录页面样式 */
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(106,17,203,0.05), rgba(37,117,252,0.05));
+  padding: 2rem 1rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: white;
+  padding: 2.5em;
+  border-radius: 25px;
+  transition: .4s ease-in-out;
+  box-shadow: rgba(0, 0, 0, 0.4) 1px 2px 2px;
+  max-width: 400px;
+  width: 100%;
+}
+
+.form:hover {
+  transform: translateX(-0.5em) translateY(-0.5em);
+  border: 1px solid #171717;
+  box-shadow: 10px 10px 0px #666666;
+}
+
+.heading {
+  color: black;
+  padding-bottom: 2em;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.input {
+  border-radius: 5px;
+  border: 1px solid whitesmoke;
+  background-color: whitesmoke;
+  outline: none;
+  padding: 0.7em;
+  transition: .4s ease-in-out;
+  font-size: 1rem;
+}
+
+.input:hover {
+  box-shadow: 6px 6px 0px #969696,
+             -3px -3px 10px #ffffff;
+}
+
+.input:focus {
+  background: #ffffff;
+  box-shadow: inset 2px 5px 10px rgba(0,0,0,0.3);
+}
+
+.form .btn {
+  margin-top: 2em;
+  align-self: center;
+  padding: 0.7em;
+  padding-left: 1em;
+  padding-right: 1em;
+  border-radius: 10px;
+  border: none;
+  color: black;
+  transition: .4s ease-in-out;
+  box-shadow: rgba(0, 0, 0, 0.4) 1px 1px 1px;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: #f0f0f0;
+}
+
+.form .btn:hover {
+  box-shadow: 6px 6px 0px #969696,
+             -3px -3px 10px #ffffff;
+  transform: translateX(-0.5em) translateY(-0.5em);
+}
+
+.form .btn:active {
+  transition: .2s;
+  transform: translateX(0em) translateY(0em);
+  box-shadow: none;
+}
+
+/* 登录页面响应式调整 */
+@media (max-width: 576px) {
+  .form {
+    padding: 2em 1.5em;
+    margin: 1rem;
+  }
+  
+  .heading {
+    font-size: 1.3rem;
+    padding-bottom: 1.5em;
   }
 }

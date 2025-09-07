@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>通知系统</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, rgba(106,17,203,0.05), rgba(37,117,252,0.05));
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+        }
+        
+        .home-card {
+            background: #ffffff;
+            border-radius: 1rem;
+            box-shadow: 0 1rem 2rem rgba(0,0,0,0.1);
+            padding: 3rem 2rem;
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+        
+        .home-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: #333;
+            margin: 0 0 0.5rem 0;
+            letter-spacing: -0.02em;
+        }
+        
+        .home-subtitle {
+            color: #666;
+            font-size: 1.1rem;
+            margin: 0 0 2.5rem 0;
+            font-weight: 400;
+        }
+        
+        .home-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .action-btn {
+            padding: 0;
+            margin: 0;
+            border: none;
+            background: none;
+            cursor: pointer;
+            text-decoration: none;
+            position: relative;
+            display: flex;
+            font-weight: 600;
+            font-size: 20px;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        
+        .action-btn p {
+            margin: 0;
+            position: relative;
+            font-size: 20px;
+            color: var(--primary-color, #111);
+            transition: color 0.3s ease-out;
+        }
+        
+        .action-btn::after {
+            position: absolute;
+            content: "";
+            width: 0;
+            left: 0;
+            bottom: -7px;
+            background: var(--hovered-color, #c84747);
+            height: 2px;
+            transition: 0.3s ease-out;
+        }
+        
+        .action-btn:hover::after {
+            width: 100%;
+        }
+        
+        .action-btn:hover p {
+            color: var(--hovered-color, #c84747);
+        }
+        
+        .action-btn:hover svg {
+            transform: translateX(4px);
+            color: var(--hovered-color, #c84747);
+        }
+        
+        .action-btn svg {
+            color: var(--primary-color, #111);
+            transition: 0.2s;
+            position: relative;
+            width: 15px;
+            transition-delay: 0.2s;
+        }
+        
+        .notifications-btn {
+            --primary-color: #6a11cb;
+            --hovered-color: #2575fc;
+        }
+        
+        .admin-btn {
+            --primary-color: #333;
+            --hovered-color: #666;
+        }
+        
+        .home-info {
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 576px) {
+            .home-actions {
+                gap: 1.5rem;
+            }
+            
+            .action-btn {
+                justify-content: center;
+            }
+            
+            .home-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="home-card">
+        <h1 class="home-title">通知系统</h1>
+        <p class="home-subtitle">欢迎使用通知管理系统</p>
+        
+        <div class="home-actions">
+            <a href="{% url 'notifications_list' %}" class="action-btn notifications-btn" target="_blank">
+                <p>通知页面</p>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="4">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                </svg>
+            </a>
+            
+            <a href="/admin/" class="action-btn admin-btn" target="_blank">
+                <p>管理后台</p>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="4">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                </svg>
+            </a>
+        </div>
+        
+        <div class="home-info">
+            <p>选择您要访问的功能</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,8 +1,18 @@
 # notifications/views.py
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
+from django.http import JsonResponse
+from django.views.decorators.http import require_POST
+from django.views.decorators.csrf import csrf_protect
 from django.db.models import Q
 from .models import Notification
+
+def home(request):
+    """
+    首页视图，提供管理后台和通知页面的入口
+    """
+    return render(request, "notifications/home.html")
 
 def my_notifications(request):
     """
@@ -32,3 +42,13 @@ def mark_read(request, pk):
         notif.is_read = True
         notif.save()
     return redirect('notifications_list')  # 返回通知列表
+
+
+@csrf_protect
+@require_POST
+def ajax_logout(request):
+    """
+    AJAX退出登录，清除会话并返回成功状态
+    """
+    logout(request)
+    return JsonResponse({'success': True, 'message': '退出成功'})
