@@ -20,6 +20,102 @@
   border-radius: 0.5rem 0.5rem 0 0;
 }
 
+/* 登录容器与卡片 */
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(106,17,203,0.08), rgba(37,117,252,0.08));
+  padding: 2rem 1rem;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  background: #fff;
+  border-radius: 0.75rem;
+  box-shadow: 0 1rem 2rem rgba(0,0,0,0.12);
+  overflow: hidden;
+}
+
+.login-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.25rem 1.5rem;
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  color: #fff;
+}
+
+.login-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.login-form {
+  padding: 1.25rem 1.5rem 1.5rem;
+}
+
+.login-form p {
+  margin: 0 0 1rem 0;
+}
+
+.login-form input[type="text"],
+.login-form input[type="email"],
+.login-form input[type="password"] {
+  width: 100%;
+  padding: 0.625rem 0.75rem;
+  border: 1px solid #dee2e6;
+  border-radius: 0.5rem;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.login-form input:focus {
+  border-color: #6a11cb;
+  box-shadow: 0 0 0 0.2rem rgba(106,17,203,0.15);
+}
+
+.login-btn {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  padding: 0.625rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+.login-btn:hover {
+  box-shadow: 0 0.75rem 1.5rem rgba(37,117,252,0.25);
+}
+
+.login-btn:active {
+  transform: translateY(1px);
+}
+
+/* 提示块 */
+.auth-alert {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  margin: 1rem;
+  border: 1px dashed #6a11cb33;
+  background-color: #f9f7ff;
+  color: #5a5f66;
+  border-radius: 0.5rem;
+}
+
 /* 通知列表 */
 .notification-list {
   list-style: none;
@@ -34,6 +130,8 @@
   border-radius: 0 !important;
   transition: all 0.2s ease;
   padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
 }
 
 .notification-item:hover {
@@ -45,27 +143,42 @@
   flex-grow: 1;
 }
 
-/* 通知徽章 */
+/* 辅助行 */
+.notification-line {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+
+/* 徽章 */
 .badge-private {
   background-color: #6a11cb !important;
+  color: #fff;
+  padding: 0.15rem 0.5rem;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
 }
 
 .badge-public {
   background-color: #20c997 !important;
+  color: #fff;
+  padding: 0.15rem 0.5rem;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
 }
 
-/* 通知发送者 */
+/* 文本 */
 .notification-sender {
   font-weight: 600;
   color: #495057;
 }
 
-/* 通知消息 */
 .notification-message {
   color: #212529;
 }
 
-/* 通知时间 */
+/* 时间/状态 */
 .notification-time {
   font-size: 0.8rem;
   color: #6c757d;
@@ -79,8 +192,12 @@
   border-radius: 50px;
   transition: all 0.2s ease;
   background-color: transparent;
-  border-color: #6a11cb;
+  border: 1px solid #6a11cb;
   color: #6a11cb;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
 }
 
 .mark-read-btn:hover {

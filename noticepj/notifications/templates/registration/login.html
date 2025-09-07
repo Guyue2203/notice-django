@@ -1,6 +1,19 @@
-<h2>登录</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">登录</button>
-</form>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/bootstrap-icons.css' %}">
+<link rel="stylesheet" href="{% static 'css/notifications.css' %}">
+
+<div class="login-container">
+  <div class="login-card">
+    <div class="login-header">
+      <i class="bi bi-box-arrow-in-right"></i>
+      <h2>登录</h2>
+    </div>
+    <form method="post" class="login-form">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="login-btn">
+        <i class="bi bi-door-open"></i> 登录
+      </button>
+    </form>
+  </div>
+</div>

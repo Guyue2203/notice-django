@@ -1,33 +1,65 @@
-<h1>通知广场</h1>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/bootstrap-icons.css' %}">
+<link rel="stylesheet" href="{% static 'css/notifications.css' %}">
 
-{% if not request.user.is_authenticated %}
-<p><a href="{% url 'login' %}?next=/notifications/">登录查看私人通知</a></p>
-{% endif %}
+<div class="notifications-container">
+  <h1 class="notifications-title">通知广场</h1>
 
-<ul>
-{% for notif in notifications %}
-    <li>
+  {% if not request.user.is_authenticated %}
+  <div class="auth-alert">
+    <i class="bi bi-lock"></i>
+    <p><a class="link-primary" href="{% url 'login' %}?next=/notifications/">登录查看私人通知</a></p>
+  </div>
+  {% endif %}
+
+  <ul class="notification-list">
+  {% for notif in notifications %}
+    <li class="notification-item d-flex align-items-center gap-3">
+      <div class="notification-content">
         {% if notif.receiver %}
+          <div class="notification-line">
+            <span class="badge badge-private">私信</span>
             {% if notif.sender %}
-                {{ notif.sender.username }} → {{ notif.receiver.username }}: {{ notif.message }}
+              <span class="notification-sender">{{ notif.sender.username }}</span>
+              <span class="bi bi-arrow-right-short" aria-hidden="true"></span>
+              <span class="notification-sender">{{ notif.receiver.username }}</span>
+              <span class="notification-message">：{{ notif.message }}</span>
             {% else %}
-                未知 → {{ notif.receiver.username }}: {{ notif.message }}
+              <span class="notification-sender">未知</span>
+              <span class="bi bi-arrow-right-short" aria-hidden="true"></span>
+              <span class="notification-sender">{{ notif.receiver.username }}</span>
+              <span class="notification-message">：{{ notif.message }}</span>
             {% endif %}
-            {% if not notif.is_read and request.user == notif.receiver %}
-                <a href="{% url 'mark_read' notif.id %}">标记已读</a>
-            {% endif %}
+          </div>
+          {% if not notif.is_read and request.user == notif.receiver %}
+          <a class="mark-read-btn" href="{% url 'mark_read' notif.id %}">
+            <i class="bi bi-check2-circle"></i> 标记已读
+          </a>
+          {% endif %}
         {% else %}
+          <div class="notification-line">
+            <span class="badge badge-public">公告</span>
             {% if notif.sender %}
-                [公告] {{ notif.sender.username }}: {{ notif.message }}
+              <span class="notification-sender">{{ notif.sender.username }}</span>
+              <span class="notification-message">：{{ notif.message }}</span>
             {% else %}
-                [公告] 系统: {{ notif.message }}
+              <span class="notification-sender">系统</span>
+              <span class="notification-message">：{{ notif.message }}</span>
             {% endif %}
+          </div>
         {% endif %}
+
         {% if notif.is_read %}
-            ✅ 已读
+        <div class="notification-time">
+          <span class="bi bi-check2"></span> 已读
+        </div>
         {% endif %}
+      </div>
     </li>
-{% empty %}
-    <li>暂无通知</li>
-{% endfor %}
-</ul>
+  {% empty %}
+    <li class="empty-notification">暂无通知</li>
+  {% endfor %}
+  </ul>
+</div>
+
+<script src="{% static 'js/notifications.js' %}"></script>
