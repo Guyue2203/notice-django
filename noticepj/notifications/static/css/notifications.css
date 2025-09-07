@@ -1,0 +1,111 @@
+/* 通知页面自定义样式 */
+
+/* 通知列表容器 */
+.notifications-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+/* 页面标题 */
+.notifications-title {
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  color: white;
+  padding: 1.5rem;
+  margin: 0;
+  font-weight: 600;
+  text-align: center;
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+/* 通知列表 */
+.notification-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* 通知项 */
+.notification-item {
+  border-left: 0 !important;
+  border-right: 0 !important;
+  border-radius: 0 !important;
+  transition: all 0.2s ease;
+  padding: 1rem 1.5rem;
+}
+
+.notification-item:hover {
+  background-color: rgba(0, 123, 255, 0.05);
+}
+
+/* 通知内容 */
+.notification-content {
+  flex-grow: 1;
+}
+
+/* 通知徽章 */
+.badge-private {
+  background-color: #6a11cb !important;
+}
+
+.badge-public {
+  background-color: #20c997 !important;
+}
+
+/* 通知发送者 */
+.notification-sender {
+  font-weight: 600;
+  color: #495057;
+}
+
+/* 通知消息 */
+.notification-message {
+  color: #212529;
+}
+
+/* 通知时间 */
+.notification-time {
+  font-size: 0.8rem;
+  color: #6c757d;
+  margin-top: 0.5rem;
+}
+
+/* 标记已读按钮 */
+.mark-read-btn {
+  padding: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+  border-radius: 50px;
+  transition: all 0.2s ease;
+  background-color: transparent;
+  border-color: #6a11cb;
+  color: #6a11cb;
+}
+
+.mark-read-btn:hover {
+  background-color: #6a11cb;
+  color: white;
+}
+
+/* 空通知状态 */
+.empty-notification {
+  padding: 2rem;
+  text-align: center;
+  color: #6c757d;
+  font-style: italic;
+  background-color: #f8f9fa;
+}
+
+/* 响应式调整 */
+@media (max-width: 576px) {
+  .notification-item {
+    flex-direction: column;
+    align-items: flex-start !important;
+  }
+  
+  .mark-read-btn {
+    margin-top: 1rem;
+    align-self: flex-end;
+  }
+}

@@ -1,0 +1,33 @@
+<h1>通知广场</h1>
+
+{% if not request.user.is_authenticated %}
+<p><a href="{% url 'login' %}?next=/notifications/">登录查看私人通知</a></p>
+{% endif %}
+
+<ul>
+{% for notif in notifications %}
+    <li>
+        {% if notif.receiver %}
+            {% if notif.sender %}
+                {{ notif.sender.username }} → {{ notif.receiver.username }}: {{ notif.message }}
+            {% else %}
+                未知 → {{ notif.receiver.username }}: {{ notif.message }}
+            {% endif %}
+            {% if not notif.is_read and request.user == notif.receiver %}
+                <a href="{% url 'mark_read' notif.id %}">标记已读</a>
+            {% endif %}
+        {% else %}
+            {% if notif.sender %}
+                [公告] {{ notif.sender.username }}: {{ notif.message }}
+            {% else %}
+                [公告] 系统: {{ notif.message }}
+            {% endif %}
+        {% endif %}
+        {% if notif.is_read %}
+            ✅ 已读
+        {% endif %}
+    </li>
+{% empty %}
+    <li>暂无通知</li>
+{% endfor %}
+</ul>

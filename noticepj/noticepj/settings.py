@@ -117,6 +117,13 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+# 添加静态文件目录
+import os
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'notifications', 'static'),
+]
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
