@@ -1,0 +1,13 @@
+{% for n in notifications %}
+  <li>
+    {% if n.receiver %}
+      <strong>私人通知</strong> 来自 {{ n.sender.username }}: {{ n.message }}
+      {% if not n.is_read %}
+        <a href="{% url 'mark_read' n.id %}">标记为已读</a>
+      {% endif %}
+    {% else %}
+      <strong>公告</strong>: {{ n.message }}
+    {% endif %}
+    <small>{{ n.created_at }}</small>
+  </li>
+{% endfor %}
