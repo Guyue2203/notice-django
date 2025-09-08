@@ -126,30 +126,35 @@ noticepj/                     # 项目根目录
 
 1. **克隆项目**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Guyue2203/notice-django.git
    cd notice-django
    ```
 
 2. **安装依赖**
+   
    ```bash
    pip install django
    ```
-
-3. **数据库迁移**
+   
+3. **数据库迁移**（目前该项目代码库已上传正常数据库文件，无需重新迁移）
+   
    ```bash
-   python manage.py migrate
+   python manage.py makemigrations #生成迁移文件
+   python manage.py migrate #执行迁移文件
    ```
-
-4. **创建超级用户**
+   
+4. **创建超级用户**（目前该项目代码库已上传正常数据库文件，无需重新创建）
+   
    ```bash
    python manage.py createsuperuser
    ```
-
+   
 5. **启动开发服务器**
+   
    ```bash
    python manage.py runserver
    ```
-
+   
 6. **访问应用**
    - 首页：http://127.0.0.1:8000/
    - 通知页面：http://127.0.0.1:8000/notifications/
@@ -163,15 +168,14 @@ noticepj/                     # 项目根目录
 3. 管理现有通知
 
 ### 普通用户操作
-1. 注册/登录账户
+1. 登录账户
 2. 查看公告和私人通知
 3. 标记私人通知为已读
 
 ## 开发说明
 
 ### 数据库迁移历史
-- `0001_initial.py`：创建初始Notification模型
-- `0002_rename_content_notification_message_and_more.py`：重构模型，添加sender字段，支持公告功能
+- `0001_initial.py`：创建迁移文件
 
 ### 静态文件配置
 - 静态文件目录：`notifications/static/`
