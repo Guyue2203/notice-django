@@ -4,27 +4,4 @@
 # 基于编辑器的 HTTP 客户端请求
 /httpRequests/
 
-# Python 缓存
-__pycache__/
-*.pyc
-*.pyo
-
-# 虚拟环境
-venv/
-env/
-ENV/
-
-# 日志
-*.log
-
-# Django 常见忽略项
-*.pot
-*.mo
-media/
-
-# IDE / 系统文件
-.vscode/
-.idea/
-.DS_Store
-Thumbs.db
 
