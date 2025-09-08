@@ -1,10 +1,24 @@
 // notification_admin.js
 // 动态控制通知管理后台的字段显示
 
-(function($) {
+(function() {
     'use strict';
     
-    function toggleIsReadField() {
+    // 等待jQuery加载完成
+    function waitForJQuery(callback) {
+        if (typeof django !== 'undefined' && django.jQuery) {
+            callback(django.jQuery);
+        } else if (typeof $ !== 'undefined') {
+            callback($);
+        } else {
+            // 如果jQuery还没有加载，等待一下再试
+            setTimeout(function() {
+                waitForJQuery(callback);
+            }, 100);
+        }
+    }
+    
+    function toggleIsReadField($) {
         var receiverField = $('#id_receiver');
         var isReadField = $('.field-is_read');
         
@@ -19,14 +33,17 @@
         }
     }
     
-    $(document).ready(function() {
-        // 页面加载时检查
-        toggleIsReadField();
-        
-        // 当receiver字段改变时检查
-        $('#id_receiver').on('change', function() {
-            toggleIsReadField();
+    // 等待jQuery加载完成后执行
+    waitForJQuery(function($) {
+        $(document).ready(function() {
+            // 页面加载时检查
+            toggleIsReadField($);
+            
+            // 当receiver字段改变时检查
+            $('#id_receiver').on('change', function() {
+                toggleIsReadField($);
+            });
         });
     });
     
-})(django.jQuery);
+})();
