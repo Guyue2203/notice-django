@@ -16,10 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from notifications import views
+from notifications import views as notification_views
 
 urlpatterns = [
-    path('', views.home, name='home'),  # 根URL直接指向首页
+    path('', notification_views.home, name='home'),  # 根URL直接指向首页
     path('admin/', admin.site.urls),
     path('notifications/', include('notifications.urls')), # new app added
     path('accounts/', include('django.contrib.auth.urls')),

@@ -6,8 +6,8 @@
     <form class="form" method="post">
         {% csrf_token %}
         <p class="heading">Login</p>
-        <input class="input" placeholder="Username" type="text" name="username" required autocomplete="username">
-        <input class="input" placeholder="Password" type="password" name="password" required autocomplete="current-password"> 
+        <input class="input" placeholder="Username" type="text" name="username" required  autocomplete="off">
+        <input class="input" placeholder="Password" type="password" name="password" required autocomplete="off">
         <button class="btn" type="submit">Submit</button>
     </form>
 </div>
