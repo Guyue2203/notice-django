@@ -20,7 +20,7 @@ from notifications import views as notification_views
 
 urlpatterns = [
     path('', notification_views.home, name='home'),  # 根URL直接指向首页
-    path('admin/', admin.site.urls),
-    path('notifications/', include('notifications.urls')), # new app added
-    path('accounts/', include('django.contrib.auth.urls')),
+    path('admin/', admin.site.urls), # 管理后台
+    path('notifications/', include('notifications.urls')), # 包含通知应用的URL
+    path('accounts/', include('django.contrib.auth.urls')), # 指向内置的认证URL
 ]
