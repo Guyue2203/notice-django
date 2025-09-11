@@ -6,13 +6,13 @@ class Notification(models.Model):
         User,
         on_delete=models.CASCADE,
         related_name="sent_notifications",
-        null=True, blank=True   # ✅ 新增：允许为空
+        null=True, blank=True   # 新增：允许为空
     )
     receiver = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
         related_name="received_notifications",
-        null=True, blank=True   # ✅ 仍然允许为空 → 公告
+        null=True, blank=True   # 仍然允许为空 → 公告
     )
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
